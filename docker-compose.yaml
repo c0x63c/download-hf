@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  docker:
+    build:
+      context: .
+      dockerfile: ./service/Dockerfile
+      args: 
+       - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+    container_name: dl01
+    network_mode: 'host'
+    tty: true
+    volumes:
+      - ./volume/Data:/volume
+    logging:
+      options:
+        max-size: '200k'
+        max-file: '10'
